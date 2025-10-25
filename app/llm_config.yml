@@ -1,8 +1,8 @@
 llms:
   default:
-    provider: openai
+    provider: openrouter
     base_url: "https://openrouter.ai/api/v1"
-    api_key: "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"
+    api_key: "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"
     model: "meta-llama/llama-4-scout"
     temperature: 0.2
 

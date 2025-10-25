@@ -1,0 +1,450 @@
+================================================================================
+LEVEL 1: DESCRIPTIVE ANALYTICS
+================================================================================
+Database: Oracle TAQDB
+Model: Llama-4-Scout via OpenRouter
+Focus: 'What happened?' - totals, counts, averages
+================================================================================
+
+
+================================================================================
+SECTION 1: OVERALL SALES METRICS
+================================================================================
+
+================================================================================
+QUERY: Q1.1 - Overall Totals
+================================================================================
+Question: What is the total sales amount, total number of orders, and total quantity sold?
+
+[OK] Status: 200 | Time: 4.10s
+
+[SQL]:
+  SELECT 
+    SUM("TOTAL_AMOUNT") AS total_sales_amount,
+    COUNT("ORDER_ID") AS total_number_of_orders,
+    SUM("QUANTITY") AS total_quantity_sold
+  FROM 
+    "ECOM_SALES_71F1F755"
+
+[RESULTS]: 1 rows
+   1. {'TOTAL_SALES_AMOUNT': 12440, 'TOTAL_NUMBER_OF_ORDERS': 50, 'TOTAL_QUANTITY_SOLD': 63}
+
+================================================================================
+QUERY: Q1.2 - Totals by Region
+================================================================================
+Question: What is the total sales, total orders, and total quantity sold by shipping country?
+
+[OK] Status: 200 | Time: 4.73s
+
+[SQL]:
+  SELECT 
+    "SHIPPING_COUNTRY",
+    SUM("TOTAL_AMOUNT") AS total_sales,
+    COUNT("ORDER_ID") AS total_orders,
+    SUM("QUANTITY") AS total_quantity
+  FROM 
+    "ECOM_SALES_71F1F755"
+  GROUP BY 
+    "SHIPPING_COUNTRY"
+  ORDER BY 
+    "SHIPPING_COUNTRY"
+
+[RESULTS]: 7 rows
+   1. {'SHIPPING_COUNTRY': 'Australia', 'TOTAL_SALES': 1290, 'TOTAL_ORDERS': 3, 'TOTAL_QUANTITY': 4}
+   2. {'SHIPPING_COUNTRY': 'Canada', 'TOTAL_SALES': 855, 'TOTAL_ORDERS': 6, 'TOTAL_QUANTITY': 8}
+   3. {'SHIPPING_COUNTRY': 'France', 'TOTAL_SALES': 330, 'TOTAL_ORDERS': 2, 'TOTAL_QUANTITY': 2}
+   4. {'SHIPPING_COUNTRY': 'Germany', 'TOTAL_SALES': 610, 'TOTAL_ORDERS': 3, 'TOTAL_QUANTITY': 3}
+   5. {'SHIPPING_COUNTRY': 'Spain', 'TOTAL_SALES': 160, 'TOTAL_ORDERS': 2, 'TOTAL_QUANTITY': 2}
+   6. {'SHIPPING_COUNTRY': 'UK', 'TOTAL_SALES': 3325, 'TOTAL_ORDERS': 10, 'TOTAL_QUANTITY': 11}
+   7. {'SHIPPING_COUNTRY': 'USA', 'TOTAL_SALES': 5870, 'TOTAL_ORDERS': 24, 'TOTAL_QUANTITY': 33}
+
+
+================================================================================
+SECTION 2: PRODUCT & CATEGORY PERFORMANCE
+================================================================================
+
+================================================================================
+QUERY: Q2.1 - Revenue by Category
+================================================================================
+Question: Which product categories generated the highest revenue?
+
+[OK] Status: 200 | Time: 3.98s
+
+[SQL]:
+  SELECT 
+    "PRODUCT_CATEGORY",
+    SUM("TOTAL_AMOUNT") AS total_revenue
+  FROM 
+    "ECOM_SALES_71F1F755"
+  GROUP BY 
+    "PRODUCT_CATEGORY"
+  ORDER BY 
+    total_revenue DESC
+  FETCH FIRST 1 ROW ONLY
+
+[RESULTS]: 1 rows
+   1. {'PRODUCT_CATEGORY': 'Electronics', 'TOTAL_REVENUE': 9095}
+
+================================================================================
+QUERY: Q2.2 - Top 10 by Quantity
+================================================================================
+Question: What are the top 10 best-selling products by quantity?
+
+[OK] Status: 200 | Time: 4.05s
+
+[SQL]:
+  SELECT 
+    "PRODUCT_NAME",
+    SUM("QUANTITY") AS total_quantity_sold
+  FROM 
+    "ECOM_SALES_71F1F755"
+  GROUP BY 
+    "PRODUCT_NAME"
+  ORDER BY 
+    total_quantity_sold DESC
+  FETCH FIRST 10 ROWS ONLY
+
+[RESULTS]: 10 rows
+   1. {'PRODUCT_NAME': 'T-Shirt', 'TOTAL_QUANTITY_SOLD': 3}
+   2. {'PRODUCT_NAME': 'Shorts', 'TOTAL_QUANTITY_SOLD': 3}
+   3. {'PRODUCT_NAME': 'Belt', 'TOTAL_QUANTITY_SOLD': 2}
+   4. {'PRODUCT_NAME': 'Wireless Mouse', 'TOTAL_QUANTITY_SOLD': 2}
+   5. {'PRODUCT_NAME': 'Jeans', 'TOTAL_QUANTITY_SOLD': 2}
+   6. {'PRODUCT_NAME': 'Headphones', 'TOTAL_QUANTITY_SOLD': 2}
+   7. {'PRODUCT_NAME': 'Laptop', 'TOTAL_QUANTITY_SOLD': 2}
+   8. {'PRODUCT_NAME': 'Bluetooth Speaker', 'TOTAL_QUANTITY_SOLD': 2}
+   9. {'PRODUCT_NAME': 'Power Bank', 'TOTAL_QUANTITY_SOLD': 2}
+  10. {'PRODUCT_NAME': 'Sweater', 'TOTAL_QUANTITY_SOLD': 2}
+
+================================================================================
+QUERY: Q2.3 - Top 10 by Revenue
+================================================================================
+Question: What are the top 10 best-selling products by total revenue?
+
+[OK] Status: 200 | Time: 4.16s
+
+[SQL]:
+  SELECT 
+    "PRODUCT_NAME", 
+    SUM("TOTAL_AMOUNT") AS total_revenue
+  FROM 
+    "ECOM_SALES_71F1F755"
+  GROUP BY 
+    "PRODUCT_NAME"
+  ORDER BY 
+    total_revenue DESC
+  FETCH FIRST 10 ROWS ONLY
+
+[RESULTS]: 10 rows
+   1. {'PRODUCT_NAME': 'Laptop', 'TOTAL_REVENUE': 2550}
+   2. {'PRODUCT_NAME': 'Camera', 'TOTAL_REVENUE': 950}
+   3. {'PRODUCT_NAME': 'Smartphone', 'TOTAL_REVENUE': 800}
+   4. {'PRODUCT_NAME': 'Drone', 'TOTAL_REVENUE': 780}
+   5. {'PRODUCT_NAME': 'Graphics Card', 'TOTAL_REVENUE': 650}
+   6. {'PRODUCT_NAME': 'Gaming Console', 'TOTAL_REVENUE': 500}
+   7. {'PRODUCT_NAME': 'Tablet', 'TOTAL_REVENUE': 450}
+   8. {'PRODUCT_NAME': 'Smartwatch', 'TOTAL_REVENUE': 420}
+   9. {'PRODUCT_NAME': 'Monitor', 'TOTAL_REVENUE': 380}
+  10. {'PRODUCT_NAME': 'Smart Watch', 'TOTAL_REVENUE': 350}
+
+
+================================================================================
+SECTION 3: AVERAGE ORDER VALUE (AOV) ANALYSIS
+================================================================================
+
+================================================================================
+QUERY: Q3.1 - AOV by Country
+================================================================================
+Question: What is the average order value by shipping country?
+
+[OK] Status: 200 | Time: 3.45s
+
+[SQL]:
+  SELECT 
+    "SHIPPING_COUNTRY",
+    AVG("TOTAL_AMOUNT") AS average_order_value
+  FROM 
+    "ECOM_SALES_71F1F755"
+  GROUP BY 
+    "SHIPPING_COUNTRY"
+
+[RESULTS]: 7 rows
+   1. {'SHIPPING_COUNTRY': 'USA', 'AVERAGE_ORDER_VALUE': 244.58333333333334}
+   2. {'SHIPPING_COUNTRY': 'Spain', 'AVERAGE_ORDER_VALUE': 80}
+   3. {'SHIPPING_COUNTRY': 'France', 'AVERAGE_ORDER_VALUE': 165}
+   4. {'SHIPPING_COUNTRY': 'Germany', 'AVERAGE_ORDER_VALUE': 203.33333333333334}
+   5. {'SHIPPING_COUNTRY': 'Australia', 'AVERAGE_ORDER_VALUE': 430}
+   6. {'SHIPPING_COUNTRY': 'Canada', 'AVERAGE_ORDER_VALUE': 142.5}
+   7. {'SHIPPING_COUNTRY': 'UK', 'AVERAGE_ORDER_VALUE': 332.5}
+
+================================================================================
+QUERY: Q3.2 - AOV by Category
+================================================================================
+Question: What is the average order value by product category?
+
+[OK] Status: 200 | Time: 3.71s
+
+[SQL]:
+  SELECT 
+    "PRODUCT_CATEGORY",
+    AVG("TOTAL_AMOUNT") AS average_order_value
+  FROM 
+    "ECOM_SALES_71F1F755"
+  GROUP BY 
+    "PRODUCT_CATEGORY"
+
+[RESULTS]: 5 rows
+   1. {'PRODUCT_CATEGORY': 'Clothing', 'AVERAGE_ORDER_VALUE': 118}
+   2. {'PRODUCT_CATEGORY': 'Books', 'AVERAGE_ORDER_VALUE': 70.71428571428571}
+   3. {'PRODUCT_CATEGORY': 'Beauty', 'AVERAGE_ORDER_VALUE': 102}
+   4. {'PRODUCT_CATEGORY': 'Electronics', 'AVERAGE_ORDER_VALUE': 433.0952380952381}
+   5. {'PRODUCT_CATEGORY': 'Home & Garden', 'AVERAGE_ORDER_VALUE': 165.71428571428572}
+
+
+================================================================================
+SECTION 4: PAYMENT & ORDER DISTRIBUTION
+================================================================================
+
+================================================================================
+QUERY: Q4.1 - Payment Distribution
+================================================================================
+Question: What is the distribution of payment methods with count and percentage?
+
+[OK] Status: 200 | Time: 4.30s
+
+[SQL]:
+  SELECT 
+    "PAYMENT_METHOD",
+    COUNT(*) AS payment_method_count,
+    ROUND(COUNT(*) / SUM(COUNT(*)) OVER (), 2) AS percentage
+  FROM 
+    "ECOM_SALES_71F1F755"
+  GROUP BY 
+    "PAYMENT_METHOD"
+  ORDER BY 
+    payment_method_count DESC
+
+[RESULTS]: 3 rows
+   1. {'PAYMENT_METHOD': 'Credit Card', 'PAYMENT_METHOD_COUNT': 23, 'PERCENTAGE': 0.46}
+   2. {'PAYMENT_METHOD': 'PayPal', 'PAYMENT_METHOD_COUNT': 18, 'PERCENTAGE': 0.36}
+   3. {'PAYMENT_METHOD': 'Debit Card', 'PAYMENT_METHOD_COUNT': 9, 'PERCENTAGE': 0.18}
+
+================================================================================
+QUERY: Q4.2 - Order Status
+================================================================================
+Question: What is the count of orders by order status?
+
+[OK] Status: 200 | Time: 3.84s
+
+[SQL]:
+  SELECT 
+    "ORDER_STATUS",
+    COUNT(*) AS order_count
+  FROM 
+    "ECOM_SALES_71F1F755"
+  GROUP BY 
+    "ORDER_STATUS"
+
+[RESULTS]: 3 rows
+   1. {'ORDER_STATUS': 'Processing', 'ORDER_COUNT': 6}
+   2. {'ORDER_STATUS': 'Delivered', 'ORDER_COUNT': 36}
+   3. {'ORDER_STATUS': 'Shipped', 'ORDER_COUNT': 8}
+
+
+================================================================================
+SECTION 5: CUSTOMER ANALYSIS
+================================================================================
+
+================================================================================
+QUERY: Q5.1 - Top Customers
+================================================================================
+Question: Which customers have the highest total purchase amounts?
+
+[OK] Status: 200 | Time: 5.08s
+
+[SQL]:
+  SELECT 
+    "CUSTOMER_NAME", 
+    SUM("TOTAL_AMOUNT") AS total_purchase_amount
+  FROM 
+    "ECOM_SALES_71F1F755"
+  GROUP BY 
+    "CUSTOMER_NAME"
+  ORDER BY 
+    total_purchase_amount DESC
+
+[RESULTS]: 38 rows
+   1. {'CUSTOMER_NAME': 'Mike Brown', 'TOTAL_PURCHASE_AMOUNT': 2265}
+   2. {'CUSTOMER_NAME': 'John Smith', 'TOTAL_PURCHASE_AMOUNT': 1500}
+   3. {'CUSTOMER_NAME': 'Jessica Lewis', 'TOTAL_PURCHASE_AMOUNT': 950}
+   4. {'CUSTOMER_NAME': 'Ryan King', 'TOTAL_PURCHASE_AMOUNT': 780}
+   5. {'CUSTOMER_NAME': 'Nicholas Parker', 'TOTAL_PURCHASE_AMOUNT': 650}
+   6. {'CUSTOMER_NAME': 'Matthew Robinson', 'TOTAL_PURCHASE_AMOUNT': 500}
+   7. {'CUSTOMER_NAME': 'Robert Taylor', 'TOTAL_PURCHASE_AMOUNT': 450}
+   8. {'CUSTOMER_NAME': 'Brandon Wright', 'TOTAL_PURCHASE_AMOUNT': 420}
+   9. {'CUSTOMER_NAME': 'Lauren Baker', 'TOTAL_PURCHASE_AMOUNT': 380}
+  10. {'CUSTOMER_NAME': 'David Martinez', 'TOTAL_PURCHASE_AMOUNT': 350}
+  11. {'CUSTOMER_NAME': 'James Wilson', 'TOTAL_PURCHASE_AMOUNT': 325}
+  12. {'CUSTOMER_NAME': 'Kevin Green', 'TOTAL_PURCHASE_AMOUNT': 320}
+  13. {'CUSTOMER_NAME': 'Sarah Johnson', 'TOTAL_PURCHASE_AMOUNT': 315}
+  14. {'CUSTOMER_NAME': 'Jennifer Lee', 'TOTAL_PURCHASE_AMOUNT': 280}
+  15. {'CUSTOMER_NAME': 'Emma Davis', 'TOTAL_PURCHASE_AMOUNT': 260}
+  ... and 23 more rows
+
+================================================================================
+QUERY: Q5.2 - Unique Customers
+================================================================================
+Question: How many unique customers made purchases?
+
+[OK] Status: 200 | Time: 3.85s
+
+[SQL]:
+  SELECT COUNT(DISTINCT "CUSTOMER_NAME") 
+  FROM "ECOM_SALES_71F1F755"
+
+[RESULTS]: 1 rows
+   1. {'COUNT(DISTINCT"CUSTOMER_NAME")': 38}
+
+
+================================================================================
+SECTION 6: DETAILED PRODUCT PERFORMANCE
+================================================================================
+
+================================================================================
+QUERY: Q6.1 - Product Matrix
+================================================================================
+Question: For each product, show quantity sold, revenue, and average price
+
+[OK] Status: 200 | Time: 3.34s
+
+[SQL]:
+  SELECT 
+    "PRODUCT_NAME",
+    SUM("QUANTITY") AS quantity_sold,
+    SUM("TOTAL_AMOUNT") AS revenue,
+    AVG("UNIT_PRICE") AS average_price
+  FROM 
+    "ECOM_SALES_71F1F755"
+  GROUP BY 
+    "PRODUCT_NAME"
+
+[RESULTS]: 49 rows
+   1. {'PRODUCT_NAME': 'T-Shirt', 'QUANTITY_SOLD': 3, 'REVENUE': 75, 'AVERAGE_PRICE': 25}
+   2. {'PRODUCT_NAME': 'Coffee Maker', 'QUANTITY_SOLD': 1, 'REVENUE': 150, 'AVERAGE_PRICE': 150}
+   3. {'PRODUCT_NAME': 'Camera', 'QUANTITY_SOLD': 1, 'REVENUE': 950, 'AVERAGE_PRICE': 950}
+   4. {'PRODUCT_NAME': 'AI Fundamentals', 'QUANTITY_SOLD': 1, 'REVENUE': 75, 'AVERAGE_PRICE': 75}
+   5. {'PRODUCT_NAME': 'DevOps Handbook', 'QUANTITY_SOLD': 1, 'REVENUE': 70, 'AVERAGE_PRICE': 70}
+   6. {'PRODUCT_NAME': 'Graphics Card', 'QUANTITY_SOLD': 1, 'REVENUE': 650, 'AVERAGE_PRICE': 650}
+   7. {'PRODUCT_NAME': 'Smartphone', 'QUANTITY_SOLD': 1, 'REVENUE': 800, 'AVERAGE_PRICE': 800}
+   8. {'PRODUCT_NAME': 'Tablet', 'QUANTITY_SOLD': 1, 'REVENUE': 450, 'AVERAGE_PRICE': 450}
+   9. {'PRODUCT_NAME': 'Smart Watch', 'QUANTITY_SOLD': 1, 'REVENUE': 350, 'AVERAGE_PRICE': 350}
+  10. {'PRODUCT_NAME': 'Sneakers', 'QUANTITY_SOLD': 1, 'REVENUE': 130, 'AVERAGE_PRICE': 130}
+  11. {'PRODUCT_NAME': 'Cologne', 'QUANTITY_SOLD': 1, 'REVENUE': 95, 'AVERAGE_PRICE': 95}
+  12. {'PRODUCT_NAME': 'Air Purifier', 'QUANTITY_SOLD': 1, 'REVENUE': 220, 'AVERAGE_PRICE': 220}
+  13. {'PRODUCT_NAME': 'Printer', 'QUANTITY_SOLD': 1, 'REVENUE': 320, 'AVERAGE_PRICE': 320}
+  14. {'PRODUCT_NAME': 'Shorts', 'QUANTITY_SOLD': 3, 'REVENUE': 105, 'AVERAGE_PRICE': 35}
+  15. {'PRODUCT_NAME': 'Food Processor', 'QUANTITY_SOLD': 1, 'REVENUE': 195, 'AVERAGE_PRICE': 195}
+  ... and 34 more rows
+
+================================================================================
+QUERY: Q6.2 - Category Comparison
+================================================================================
+Question: Compare categories by total orders, revenue, and average order value
+
+[OK] Status: 200 | Time: 4.25s
+
+[SQL]:
+  SELECT 
+    "PRODUCT_CATEGORY",
+    COUNT(DISTINCT "ORDER_ID") AS total_orders,
+    SUM("TOTAL_AMOUNT") AS total_revenue,
+    AVG("TOTAL_AMOUNT") AS average_order_value
+  FROM 
+    "ECOM_SALES_71F1F755"
+  GROUP BY 
+    "PRODUCT_CATEGORY"
+  ORDER BY 
+    total_orders DESC, 
+    total_revenue DESC, 
+    average_order_value DESC
+
+[RESULTS]: 5 rows
+   1. {'PRODUCT_CATEGORY': 'Electronics', 'TOTAL_ORDERS': 21, 'TOTAL_REVENUE': 9095, 'AVERAGE_ORDER_VALUE': 433.0952380952381}
+   2. {'PRODUCT_CATEGORY': 'Clothing', 'TOTAL_ORDERS': 10, 'TOTAL_REVENUE': 1180, 'AVERAGE_ORDER_VALUE': 118}
+   3. {'PRODUCT_CATEGORY': 'Home & Garden', 'TOTAL_ORDERS': 7, 'TOTAL_REVENUE': 1160, 'AVERAGE_ORDER_VALUE': 165.71428571428572}
+   4. {'PRODUCT_CATEGORY': 'Books', 'TOTAL_ORDERS': 7, 'TOTAL_REVENUE': 495, 'AVERAGE_ORDER_VALUE': 70.71428571428571}
+   5. {'PRODUCT_CATEGORY': 'Beauty', 'TOTAL_ORDERS': 5, 'TOTAL_REVENUE': 510, 'AVERAGE_ORDER_VALUE': 102}
+
+
+================================================================================
+TEST SUMMARY
+================================================================================
+
+Total Queries: 13
+Passed: 13
+Failed: 0
+Success Rate: 100.0%
+
+Average Time: 4.06s
+Fastest: 3.34s
+Slowest: 5.08s
+
+================================================================================
+DETAILED RESULTS
+================================================================================
+ 1. [PASS] Overall Totals                 -  4.10s
+ 2. [PASS] Totals by Region               -  4.73s
+ 3. [PASS] Revenue by Category            -  3.98s
+ 4. [PASS] Top 10 by Quantity             -  4.05s
+ 5. [PASS] Top 10 by Revenue              -  4.16s
+ 6. [PASS] AOV by Country                 -  3.45s
+ 7. [PASS] AOV by Category                -  3.71s
+ 8. [PASS] Payment Distribution           -  4.30s
+ 9. [PASS] Order Status                   -  3.84s
+10. [PASS] Top Customers                  -  5.08s
+11. [PASS] Unique Customers               -  3.85s
+12. [PASS] Product Matrix                 -  3.34s
+13. [PASS] Category Comparison            -  4.25s
+
+
+================================================================================
+DESCRIPTIVE ANALYTICS REPORT
+================================================================================
+
+1. OVERALL BUSINESS METRICS:
+   - Total Sales: $0
+   - Total Orders: 0
+   - Total Quantity Sold: 0 units
+
+2. REGIONAL PERFORMANCE (Top 5):
+   1. USA: $5,870 (24 orders)
+   2. UK: $3,325 (10 orders)
+   3. Australia: $1,290 (3 orders)
+   4. Canada: $855 (6 orders)
+   5. Germany: $610 (3 orders)
+
+3. TOP REVENUE CATEGORIES:
+   1. Electronics: $9,095
+
+4. TOP 5 REVENUE-GENERATING PRODUCTS:
+   1. Laptop: $2,550
+   2. Camera: $950
+   3. Smartphone: $800
+   4. Drone: $780
+   5. Graphics Card: $650
+
+5. AVERAGE ORDER VALUE BY COUNTRY (Top 5):
+   1. USA: $0.00
+   2. Spain: $0.00
+   3. France: $0.00
+   4. Germany: $0.00
+   5. Australia: $0.00
+
+6. PAYMENT METHOD DISTRIBUTION:
+   - Credit Card: 0 orders (0.0%)
+   - PayPal: 0 orders (0.0%)
+   - Debit Card: 0 orders (0.0%)
+
+================================================================================
+END OF LEVEL 1 DESCRIPTIVE ANALYTICS REPORT
+================================================================================

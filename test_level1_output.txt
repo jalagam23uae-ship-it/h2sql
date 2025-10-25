@@ -1,0 +1,190 @@
+================================================================================
+LEVEL 1: DESCRIPTIVE ANALYTICS
+================================================================================
+Database: Oracle TAQDB
+Model: Llama-4-Scout via OpenRouter
+Focus: 'What happened?' - totals, counts, averages
+================================================================================
+
+
+================================================================================
+SECTION 1: OVERALL SALES METRICS
+================================================================================
+
+================================================================================
+QUERY: Q1.1 - Overall Totals
+================================================================================
+Question: What is the total sales amount, total number of orders, and total quantity sold?
+
+[FAIL] Status: 500 | Time: 3.46s
+
+[ERROR]: Failed to generate SQL from question: LLM returned invalid response: Error: 401
+
+================================================================================
+QUERY: Q1.2 - Totals by Region
+================================================================================
+Question: What is the total sales, total orders, and total quantity sold by shipping country?
+
+[FAIL] Status: 500 | Time: 2.51s
+
+[ERROR]: Failed to generate SQL from question: LLM returned invalid response: Error: 401
+
+
+================================================================================
+SECTION 2: PRODUCT & CATEGORY PERFORMANCE
+================================================================================
+
+================================================================================
+QUERY: Q2.1 - Revenue by Category
+================================================================================
+Question: Which product categories generated the highest revenue?
+
+[FAIL] Status: 500 | Time: 2.31s
+
+[ERROR]: Failed to generate SQL from question: LLM returned invalid response: Error: 401
+
+================================================================================
+QUERY: Q2.2 - Top 10 by Quantity
+================================================================================
+Question: What are the top 10 best-selling products by quantity?
+
+[FAIL] Status: 500 | Time: 2.29s
+
+[ERROR]: Failed to generate SQL from question: LLM returned invalid response: Error: 401
+
+================================================================================
+QUERY: Q2.3 - Top 10 by Revenue
+================================================================================
+Question: What are the top 10 best-selling products by total revenue?
+
+[FAIL] Status: 500 | Time: 2.57s
+
+[ERROR]: Failed to generate SQL from question: LLM returned invalid response: Error: 401
+
+
+================================================================================
+SECTION 3: AVERAGE ORDER VALUE (AOV) ANALYSIS
+================================================================================
+
+================================================================================
+QUERY: Q3.1 - AOV by Country
+================================================================================
+Question: What is the average order value by shipping country?
+
+[FAIL] Status: 500 | Time: 2.44s
+
+[ERROR]: Failed to generate SQL from question: LLM returned invalid response: Error: 401
+
+================================================================================
+QUERY: Q3.2 - AOV by Category
+================================================================================
+Question: What is the average order value by product category?
+
+[FAIL] Status: 500 | Time: 2.59s
+
+[ERROR]: Failed to generate SQL from question: LLM returned invalid response: Error: 401
+
+
+================================================================================
+SECTION 4: PAYMENT & ORDER DISTRIBUTION
+================================================================================
+
+================================================================================
+QUERY: Q4.1 - Payment Distribution
+================================================================================
+Question: What is the distribution of payment methods with count and percentage?
+
+[FAIL] Status: 500 | Time: 2.41s
+
+[ERROR]: Failed to generate SQL from question: LLM returned invalid response: Error: 401
+
+================================================================================
+QUERY: Q4.2 - Order Status
+================================================================================
+Question: What is the count of orders by order status?
+
+[FAIL] Status: 500 | Time: 2.31s
+
+[ERROR]: Failed to generate SQL from question: LLM returned invalid response: Error: 401
+
+
+================================================================================
+SECTION 5: CUSTOMER ANALYSIS
+================================================================================
+
+================================================================================
+QUERY: Q5.1 - Top Customers
+================================================================================
+Question: Which customers have the highest total purchase amounts?
+
+[FAIL] Status: 500 | Time: 2.39s
+
+[ERROR]: Failed to generate SQL from question: LLM returned invalid response: Error: 401
+
+================================================================================
+QUERY: Q5.2 - Unique Customers
+================================================================================
+Question: How many unique customers made purchases?
+
+[FAIL] Status: 500 | Time: 2.28s
+
+[ERROR]: Failed to generate SQL from question: LLM returned invalid response: Error: 401
+
+
+================================================================================
+SECTION 6: DETAILED PRODUCT PERFORMANCE
+================================================================================
+
+================================================================================
+QUERY: Q6.1 - Product Matrix
+================================================================================
+Question: For each product, show quantity sold, revenue, and average price
+
+[FAIL] Status: 500 | Time: 2.33s
+
+[ERROR]: Failed to generate SQL from question: LLM returned invalid response: Error: 401
+
+================================================================================
+QUERY: Q6.2 - Category Comparison
+================================================================================
+Question: Compare categories by total orders, revenue, and average order value
+
+[FAIL] Status: 500 | Time: 2.28s
+
+[ERROR]: Failed to generate SQL from question: LLM returned invalid response: Error: 401
+
+
+================================================================================
+TEST SUMMARY
+================================================================================
+
+Total Queries: 13
+Passed: 0
+Failed: 13
+Success Rate: 0.0%
+
+================================================================================
+DETAILED RESULTS
+================================================================================
+ 1. [FAIL] Overall Totals                 -  3.46s
+ 2. [FAIL] Totals by Region               -  2.51s
+ 3. [FAIL] Revenue by Category            -  2.31s
+ 4. [FAIL] Top 10 by Quantity             -  2.29s
+ 5. [FAIL] Top 10 by Revenue              -  2.57s
+ 6. [FAIL] AOV by Country                 -  2.44s
+ 7. [FAIL] AOV by Category                -  2.59s
+ 8. [FAIL] Payment Distribution           -  2.41s
+ 9. [FAIL] Order Status                   -  2.31s
+10. [FAIL] Top Customers                  -  2.39s
+11. [FAIL] Unique Customers               -  2.28s
+12. [FAIL] Product Matrix                 -  2.33s
+13. [FAIL] Category Comparison            -  2.28s
+
+
+================================================================================
+DESCRIPTIVE ANALYTICS REPORT
+================================================================================
+
+================================================================================
+END OF LEVEL 1 DESCRIPTIVE ANALYTICS REPORT
+================================================================================

@@ -57,6 +57,13 @@ class ChatModel:
         )
 
         # ----------------------------
+        # Force HTTP fallback for OpenRouter (bypass LiteLLM)
+        # ----------------------------
+        if "openrouter.ai" in self.api_url:
+            print("[ChatModel] Detected OpenRouter URL - using direct HTTP (bypassing LiteLLM)")
+            return self._http_fallback(messages, temperature)
+
+        # ----------------------------
         # Try LiteLLM
         # ----------------------------
         try:
@@ -72,49 +79,56 @@ class ChatModel:
         except Exception as e:
             print(f"\n[ChatModel] LiteLLM failed: {e}")
             print("Retrying via raw HTTP request...")
+            return self._http_fallback(messages, temperature)
 
-            # ----------------------------
-            # Raw HTTP Fallback
-            # ----------------------------
-            try:
-                # Extract model name without provider prefix for direct API calls
-                model_name = self.model.split('/')[-1] if '/' in self.model else self.model
+    def _http_fallback(self, messages: list, temperature: float) -> str:
+        """Raw HTTP fallback for direct API calls"""
+        try:
+            # Extract model name without provider prefix for direct API calls
+            # For "openrouter/meta-llama/llama-4-scout", remove only "openrouter/"
+            # For other providers like "openai/gpt-4", remove the provider prefix
+            if self.model.startswith("openrouter/"):
+                model_name = self.model[11:]  # Remove "openrouter/" prefix only
+            elif '/' in self.model:
+                model_name = self.model.split('/', 1)[1]  # Remove first segment only
+            else:
+                model_name = self.model
 
-                payload = {
-                    "model": model_name,
-                    "messages": messages,
-                    "temperature": temperature,
-                    "stream": False,
-                }
+            payload = {
+                "model": model_name,
+                "messages": messages,
+                "temperature": temperature,
+                "stream": False,
+            }
 
-                print("\n[ChatModel] Fallback payload:")
-                print(json.dumps(payload, indent=2, ensure_ascii=False))
+            print("\n[ChatModel] Fallback payload:")
+            print(json.dumps(payload, indent=2, ensure_ascii=False))
 
-                headers = {"Content-Type": "application/json"}
-                if self.api_key and self.api_key != "llm":
-                    headers["Authorization"] = f"Bearer {self.api_key}"
+            headers = {"Content-Type": "application/json"}
+            if self.api_key and self.api_key != "llm":
+                headers["Authorization"] = f"Bearer {self.api_key}"
 
-                resp = requests.post(
-                    f"{self.api_url}/chat/completions",
-                    headers=headers,
-                    data=json.dumps(payload),
-                    timeout=300,  # Increased from 90 to 300 seconds for large prompts
+            resp = requests.post(
+                f"{self.api_url}/chat/completions",
+                headers=headers,
+                data=json.dumps(payload),
+                timeout=300,  # Increased from 90 to 300 seconds for large prompts
+            )
+
+            if resp.status_code == 200:
+                data = resp.json()
+                return (
+                    data.get("choices", [{}])[0]
+                    .get("message", {})
+                    .get("content", "")
                 )
 
-                if resp.status_code == 200:
-                    data = resp.json()
-                    return (
-                        data.get("choices", [{}])[0]
-                        .get("message", {})
-                        .get("content", "")
-                    )
+            print(f"[ChatModel] Error {resp.status_code}: {resp.text}")
+            return f"Error: {resp.status_code}"
 
-                print(f"[ChatModel] Error {resp.status_code}: {resp.text}")
-                return f"Error: {resp.status_code}"
-
-            except Exception as e2:
-                print(f"[ChatModel] Fallback failed: {e2}")
-                return f"Error during inference: {e2}"
+        except Exception as e2:
+            print(f"[ChatModel] Fallback failed: {e2}")
+            return f"Error during inference: {e2}"
 
     # ------------------------------------------------------------------
     # Backward-compatible helper (legacy API)
