@@ -1,0 +1,35 @@
+INFO:     127.0.0.1:57618 - "GET /health HTTP/1.1" 200 OK
+2025-10-25 14:01:47,100 INFO sqlalchemy.engine.Engine select pg_catalog.version()
+2025-10-25 14:01:47,119 INFO sqlalchemy.engine.Engine [raw sql] ()
+2025-10-25 14:01:47,135 INFO sqlalchemy.engine.Engine select current_schema()
+2025-10-25 14:01:47,147 INFO sqlalchemy.engine.Engine [raw sql] ()
+2025-10-25 14:01:47,167 INFO sqlalchemy.engine.Engine show standard_conforming_strings
+2025-10-25 14:01:47,181 INFO sqlalchemy.engine.Engine [raw sql] ()
+2025-10-25 14:01:47,200 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-10-25 14:01:47,218 INFO sqlalchemy.engine.Engine SELECT projects.id, projects.name, projects.train_id, projects.connection, projects.db_metadata, projects.create_date, projects.update_date 
+FROM projects
+2025-10-25 14:01:47,221 INFO sqlalchemy.engine.Engine [generated in 0.00227s] ()
+2025-10-25 14:01:47,227 INFO sqlalchemy.engine.Engine ROLLBACK
+INFO:     127.0.0.1:57644 - "GET /h2s/db/projects HTTP/1.1" 200 OK
+2025-10-25 14:06:38,451 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-10-25 14:06:38,454 INFO sqlalchemy.engine.Engine SELECT projects.id, projects.name, projects.train_id, projects.connection, projects.db_metadata, projects.create_date, projects.update_date 
+FROM projects 
+WHERE projects.id = $1::INTEGER
+2025-10-25 14:06:38,455 INFO sqlalchemy.engine.Engine [generated in 0.00089s] (22,)
+2025-10-25 14:06:38,476 INFO sqlalchemy.engine.Engine ROLLBACK
+INFO:     127.0.0.1:57845 - "POST /h2s/data-upload/upload HTTP/1.1" 500 Internal Server Error
+2025-10-25 14:06:45,222 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-10-25 14:06:45,225 INFO sqlalchemy.engine.Engine SELECT projects.id, projects.name, projects.train_id, projects.connection, projects.db_metadata, projects.create_date, projects.update_date 
+FROM projects 
+WHERE projects.id = $1::INTEGER
+2025-10-25 14:06:45,226 INFO sqlalchemy.engine.Engine [cached since 6.772s ago] (22,)
+2025-10-25 14:06:45,229 INFO sqlalchemy.engine.Engine ROLLBACK
+INFO:     127.0.0.1:56750 - "GET /h2s/db/projects/22 HTTP/1.1" 200 OK
+2025-10-25 14:06:50,193 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-10-25 14:06:50,196 INFO sqlalchemy.engine.Engine SELECT projects.id, projects.name, projects.train_id, projects.connection, projects.db_metadata, projects.create_date, projects.update_date 
+FROM projects 
+WHERE projects.id = $1::INTEGER
+2025-10-25 14:06:50,197 INFO sqlalchemy.engine.Engine [cached since 11.74s ago] (18,)
+2025-10-25 14:06:50,201 INFO sqlalchemy.engine.Engine ROLLBACK
+INFO:     127.0.0.1:56770 - "GET /h2s/db/projects/18 HTTP/1.1" 200 OK
+ 

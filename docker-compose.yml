@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  h2sql-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: h2sql-api
+    ports:
+      - "11901:11901"
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER:-user}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-password}
+      - POSTGRES_DB=${POSTGRES_DB:-database}
+      - POSTGRES_HOST=${POSTGRES_HOST:-192.168.1.131}
+      - POSTGRES_PORT=${POSTGRES_PORT:-5433}
+    volumes:
+      - ./app:/app/app
+      - ./logs:/app/logs
+    networks:
+      - h2sql-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:11901/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Optional: Local PostgreSQL for testing
+  postgres:
+    image: postgres:15-alpine
+    container_name: h2sql-postgres
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=database
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - h2sql-network
+    restart: unless-stopped
+    profiles:
+      - with-db
+
+volumes:
+  postgres-data:
+
+networks:
+  h2sql-network:
+    driver: bridge

@@ -1,0 +1,300 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report - test_project</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #ffffff;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .chart-container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+            border: 1px solid #e0e0e0;
+            margin-bottom: 30px;
+        }
+        .chart-title {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #667eea;
+        }
+        .controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .control-group label {
+            font-size: 0.9em;
+            color: #666;
+            font-weight: 600;
+        }
+        select {
+            padding: 10px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            background: white;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+        select:hover {
+            border-color: #667eea;
+        }
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        .canvas-wrapper {
+            position: relative;
+            height: 400px;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        th {
+            background: #f5f5f5;
+            font-weight: 600;
+            color: #333;
+        }
+        tr:hover {
+            background: #f9f9f9;
+        }
+        .sql-query {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #333;
+            margin-top: 15px;
+            overflow-x: auto;
+        }
+        .toggle-sql {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background 0.3s;
+        }
+        .toggle-sql:hover {
+            background: #5568d3;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="chart-container">
+            <div class="chart-title">Customer segments</div>
+
+            <div class="controls">
+                <div class="control-group">
+                    <label>Chart Type:</label>
+                    <select id="type_chart_0" onchange="updateChart_0()">
+                        <option value="bar" selected>Bar</option>
+                        <option value="line" >Line</option>
+                        <option value="pie" >Pie</option>
+                        <option value="table" >Table</option>
+
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label>X-Axis:</label>
+                    <select id="x_chart_0" onchange="updateChart_0()">
+                        <option value="segment" selected>segment</option>
+                        <option value="count" >count</option>
+
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label>Y-Axis: <small style="color: #999; font-weight: normal;">(Ctrl+Click for multiple)</small></label>
+                    <select id="y_chart_0" onchange="updateChart_0()" multiple size="3">
+                        <option value="count" selected>count</option>
+
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label>&nbsp;</label>
+                    <button class="toggle-sql" onclick="toggleSQL_0()">Show SQL</button>
+                </div>
+            </div>
+
+            <div class="canvas-wrapper">
+                <canvas id="chart_0"></canvas>
+            </div>
+
+            <div id="table_0" class="hidden"></div>
+
+            <div id="sql_0" class="sql-query hidden">
+                SELECT segment, COUNT(*) as count FROM "CUSTOMERS_59C96545" GROUP BY segment
+            </div>
+        </div>
+
+        <script>
+            let chart_0 = null;
+
+            const data_0 = {
+                columns: ["segment", "count"],
+                rows: [["Consumer", "409"], ["Corporate", "236"], ["Home Office", "148"]]
+            };
+
+            function toggleSQL_0() {
+                const sqlDiv = document.getElementById('sql_0');
+                sqlDiv.classList.toggle('hidden');
+            }
+
+            function updateChart_0() {
+                const chartType = document.getElementById('type_chart_0').value;
+                const xField = document.getElementById('x_chart_0').value;
+                const ySelects = document.getElementById('y_chart_0').selectedOptions;
+                const yFields = Array.from(ySelects).map(opt => opt.value);
+
+                if (chartType === 'table') {
+                    showTable_0();
+                    return;
+                }
+
+                // Ensure at least one Y-axis is selected
+                if (yFields.length === 0) {
+                    console.warn('No Y-axis selected, using first numeric column');
+                    const firstOption = document.getElementById('y_chart_0').options[0];
+                    if (firstOption) {
+                        firstOption.selected = true;
+                        yFields.push(firstOption.value);
+                    }
+                }
+
+                document.getElementById('table_0').classList.add('hidden');
+                document.getElementById('chart_0').parentElement.classList.remove('hidden');
+
+                const xIdx = data_0.columns.indexOf(xField);
+                const labels = data_0.rows.map(row => row[xIdx]);
+
+                const datasets = yFields.map((yField, idx) => {
+                    const yIdx = data_0.columns.indexOf(yField);
+                    const data = data_0.rows.map(row => parseFloat(row[yIdx]) || 0);
+
+                    const colors = [
+                        'rgba(102, 126, 234, 0.8)',
+                        'rgba(118, 75, 162, 0.8)',
+                        'rgba(255, 99, 132, 0.8)',
+                        'rgba(54, 162, 235, 0.8)',
+                        'rgba(255, 206, 86, 0.8)',
+                        'rgba(75, 192, 192, 0.8)'
+                    ];
+
+                    return {
+                        label: yField,
+                        data: data,
+                        backgroundColor: chartType === 'pie' ? colors : colors[idx % colors.length],
+                        borderColor: chartType === 'pie' ? colors : colors[idx % colors.length].replace('0.8', '1'),
+                        borderWidth: 2
+                    };
+                });
+
+                if (chart_0) {
+                    chart_0.destroy();
+                }
+
+                const ctx = document.getElementById('chart_0').getContext('2d');
+                chart_0 = new Chart(ctx, {
+                    type: chartType,
+                    data: {
+                        labels: labels,
+                        datasets: datasets
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: true,
+                                position: 'top'
+                            },
+                            title: {
+                                display: true,
+                                text: 'Customer segments'
+                            }
+                        },
+                        scales: chartType !== 'pie' ? {
+                            y: {
+                                beginAtZero: true
+                            }
+                        } : {}
+                    }
+                });
+            }
+
+            function showTable_0() {
+                document.getElementById('chart_0').parentElement.classList.add('hidden');
+                const tableDiv = document.getElementById('table_0');
+                tableDiv.classList.remove('hidden');
+
+                let tableHTML = '<table><thead><tr>';
+                data_0.columns.forEach(col => {
+                    tableHTML += `<th>${col}</th>`;
+                });
+                tableHTML += '</tr></thead><tbody>';
+
+                data_0.rows.forEach(row => {
+                    tableHTML += '<tr>';
+                    row.forEach(cell => {
+                        tableHTML += `<td>${cell}</td>`;
+                    });
+                    tableHTML += '</tr>';
+                });
+
+                tableHTML += '</tbody></table>';
+                tableDiv.innerHTML = tableHTML;
+            }
+
+            // Initialize chart
+            updateChart_0();
+        </script>
+
+    </div>
+</body>
+</html>

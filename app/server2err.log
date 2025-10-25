@@ -1,0 +1,35 @@
+INFO:     Will watch for changes in these directories: ['D:\\h2sql\\app']
+INFO:     Uvicorn running on http://0.0.0.0:11901 (Press CTRL+C to quit)
+INFO:     Started reloader process [21080] using WatchFiles
+INFO:     Started server process [1556]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+\u274c Upload failed: invalid integer value "5433/database" for connection option "port"
+Traceback (most recent call last):
+  File "D:\h2sql\app\projects\services\data_upload_api.py", line 1305, in upload_file
+    connection = connector.get_connection(connection_profile)
+  File "D:\h2sql\app\projects\connectors\postgres.py", line 37, in get_connection
+    self.connection = self._get_connection(
+                      ~~~~~~~~~~~~~~~~~~~~^
+        con_profile.username,
+        ^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        con_profile.database
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\h2sql\app\projects\connectors\postgres.py", line 28, in _get_connection
+    return psycopg2.connect(
+           ~~~~~~~~~~~~~~~~^
+        host=host,
+        ^^^^^^^^^^
+    ...<3 lines>...
+        password=password
+        ^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\sjalagam\AppData\Local\Programs\Python\Python313\Lib\site-packages\psycopg2\__init__.py", line 135, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: invalid integer value "5433/database" for connection option "port"
+
+WARNING:  WatchFiles detected changes in 'projects\services\projects_api.py'. Reloading...

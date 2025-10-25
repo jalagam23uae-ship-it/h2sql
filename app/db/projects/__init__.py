@@ -1,0 +1,3 @@
+"""
+Projects database module
+"""
