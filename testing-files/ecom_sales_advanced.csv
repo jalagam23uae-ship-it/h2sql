@@ -1,0 +1,101 @@
+order_id,order_date,customer_id,customer_name,customer_age,customer_gender,loyalty_status,product_category,product_name,brand,quantity,unit_price,discount_percentage,discount_amount,total_amount,cost_price,profit_margin,payment_method,shipping_country,shipping_city,sales_channel,order_status,return_flag,delivery_days,courier_partner,campaign_id
+ORD001,2024-01-15,CUST1001,John Smith,35,Male,Gold,Electronics,Laptop,Dell,1,1200,10,120,1080,800,280,Credit Card,USA,New York,Online,Delivered,No,3,FedEx,CAMP001
+ORD002,2024-01-15,CUST1002,Sarah Johnson,28,Female,Silver,Clothing,T-Shirt,Nike,2,35,15,10.5,59.5,20,39.5,PayPal,UK,London,Mobile App,Delivered,No,4,DHL,CAMP001
+ORD003,2024-01-16,CUST1003,Mike Brown,42,Male,Platinum,Electronics,Smartphone,Samsung,1,800,5,40,760,600,160,Credit Card,UK,London,Online,Delivered,No,2,Royal Mail,
+ORD004,2024-01-17,CUST1002,Sarah Johnson,28,Female,Silver,Beauty,Lipstick,MAC,3,25,20,15,60,15,45,PayPal,UK,London,Mobile App,Delivered,Yes,6,DHL,CAMP002
+ORD005,2024-01-18,CUST1004,Emily Davis,31,Female,Bronze,Books,Fiction Novel,Penguin,1,20,0,0,20,10,10,Debit Card,Canada,Toronto,Website,Delivered,No,5,Canada Post,
+ORD006,2024-01-19,CUST1005,Chris Wilson,45,Male,Gold,Home & Garden,Blender,Philips,1,95,10,9.5,85.5,60,25.5,Credit Card,USA,Chicago,Online,Delivered,No,4,UPS,CAMP001
+ORD007,2024-01-20,CUST1006,Emma Wilson,29,Female,Bronze,Clothing,Jeans,Levi's,1,80,5,4,76,50,26,PayPal,Australia,Sydney,Mobile App,Processing,No,7,Australia Post,
+ORD008,2024-01-21,CUST1003,Mike Brown,42,Male,Platinum,Electronics,Headphones,Sony,2,150,15,45,255,90,165,Credit Card,UK,London,Online,Delivered,No,3,DHL,CAMP002
+ORD009,2024-01-22,CUST1007,James Taylor,38,Male,Silver,Electronics,Tablet,Apple,1,450,10,45,405,300,105,Credit Card,USA,Los Angeles,Website,Delivered,No,2,FedEx,
+ORD010,2024-01-23,CUST1008,Olivia Martin,26,Female,Bronze,Beauty,Perfume,Chanel,1,120,0,0,120,70,50,Debit Card,France,Paris,Online,Delivered,No,5,La Poste,
+ORD011,2024-01-24,CUST1009,William Garcia,33,Male,Gold,Electronics,Smart Watch,Apple,1,350,5,17.5,332.5,250,82.5,PayPal,USA,Miami,Mobile App,Delivered,No,3,USPS,CAMP001
+ORD012,2024-01-25,CUST1010,Sophia Rodriguez,27,Female,Silver,Clothing,Dress,Zara,1,95,20,19,76,50,26,Credit Card,Spain,Madrid,Website,Delivered,Yes,8,Correos,CAMP002
+ORD013,2024-01-26,CUST1011,Daniel Martinez,40,Male,Bronze,Books,Sci-Fi Book,Orbit,2,30,10,6,54,15,39,Debit Card,Canada,Vancouver,Online,Delivered,No,4,Canada Post,
+ORD014,2024-01-27,CUST1012,Isabella Lopez,32,Female,Platinum,Home & Garden,Coffee Maker,Cuisinart,1,150,15,22.5,127.5,90,37.5,Credit Card,USA,Seattle,Online,Delivered,No,3,Amazon,CAMP001
+ORD015,2024-01-28,CUST1013,Matthew Lee,36,Male,Gold,Electronics,Wireless Mouse,Logitech,3,25,10,7.5,67.5,15,52.5,PayPal,Germany,Berlin,Mobile App,Shipped,No,5,DHL,
+ORD016,2024-01-29,CUST1014,Jessica Lewis,29,Female,Silver,Electronics,Camera,Canon,1,950,0,0,950,700,250,Credit Card,USA,Boston,Website,Processing,No,2,FedEx,CAMP002
+ORD017,2024-01-30,CUST1015,Joseph Walker,44,Male,Bronze,Electronics,Gaming Console,Sony,1,500,5,25,475,350,125,Debit Card,UK,Birmingham,Online,Delivered,No,4,Royal Mail,
+ORD018,2024-02-01,CUST1003,Mike Brown,42,Male,Platinum,Clothing,Sweater,H&M,2,55,15,16.5,93.5,30,63.5,Credit Card,UK,London,Mobile App,Delivered,No,3,DHL,CAMP001
+ORD019,2024-02-02,CUST1016,Ashley Hall,30,Female,Gold,Books,Cookbook,Jamie Oliver,1,40,0,0,40,20,20,PayPal,USA,Denver,Website,Delivered,No,5,USPS,
+ORD020,2024-02-03,CUST1017,Ryan Allen,34,Male,Silver,Electronics,Drone,DJI,1,780,10,78,702,550,152,Credit Card,Australia,Melbourne,Online,Delivered,No,6,Australia Post,CAMP002
+ORD021,2024-02-04,CUST1018,Megan Young,25,Female,Bronze,Beauty,Shampoo,L'Oreal,2,25,20,10,40,12,28,Debit Card,Canada,Montreal,Mobile App,Delivered,Yes,7,Canada Post,CAMP002
+ORD022,2024-02-05,CUST1019,Brandon King,39,Male,Platinum,Home & Garden,Vacuum Cleaner,Dyson,1,380,5,19,361,250,111,Credit Card,USA,Houston,Website,Delivered,No,3,UPS,
+ORD023,2024-02-06,CUST1020,Nicole Wright,33,Female,Gold,Clothing,Coat,Burberry,1,210,10,21,189,120,69,PayPal,France,Lyon,Online,Delivered,No,6,La Poste,CAMP001
+ORD024,2024-02-07,CUST1021,Tyler Scott,41,Male,Silver,Electronics,Monitor,Dell,1,380,15,57,323,250,73,Credit Card,USA,Atlanta,Mobile App,Delivered,No,4,FedEx,
+ORD025,2024-02-08,CUST1022,Lauren Green,28,Female,Bronze,Books,History Book,Oxford,1,35,5,1.75,33.25,18,15.25,Debit Card,UK,Manchester,Website,Delivered,No,5,Royal Mail,
+ORD026,2024-02-09,CUST1001,John Smith,35,Male,Gold,Electronics,Keyboard,Logitech,1,70,10,7,63,40,23,Credit Card,USA,New York,Online,Delivered,No,2,Amazon,CAMP002
+ORD027,2024-02-10,CUST1023,Kayla Baker,27,Female,Silver,Clothing,Shorts,Adidas,3,30,25,22.5,67.5,18,49.5,PayPal,Australia,Brisbane,Mobile App,Delivered,No,5,Australia Post,CAMP002
+ORD028,2024-02-11,CUST1024,Austin Adams,37,Male,Gold,Electronics,Power Bank,Anker,2,40,10,8,72,24,48,Credit Card,Germany,Munich,Website,Delivered,No,4,DHL,
+ORD029,2024-02-12,CUST1025,Hannah Nelson,31,Female,Bronze,Beauty,Moisturizer,Nivea,1,35,15,5.25,29.75,18,11.75,Debit Card,Spain,Barcelona,Online,Delivered,No,7,Correos,
+ORD030,2024-02-13,CUST1026,Zachary Carter,43,Male,Platinum,Home & Garden,Garden Tools,Black & Decker,1,120,5,6,114,75,39,Credit Card,USA,Phoenix,Mobile App,Delivered,No,3,UPS,CAMP001
+ORD031,2024-02-14,CUST1027,Madison Mitchell,26,Female,Gold,Clothing,Skirt,Forever 21,2,40,20,16,64,24,40,PayPal,Canada,Calgary,Website,Delivered,Yes,6,Canada Post,CAMP002
+ORD032,2024-02-15,CUST1028,Joshua Perez,35,Male,Silver,Electronics,Bluetooth Speaker,JBL,2,65,10,13,117,40,77,Credit Card,UK,Liverpool,Online,Delivered,No,4,DHL,
+ORD033,2024-02-16,CUST1029,Alexis Roberts,29,Female,Bronze,Books,Biography,Simon & Schuster,1,45,0,0,45,22,23,Debit Card,USA,San Francisco,Mobile App,Delivered,No,3,USPS,
+ORD034,2024-02-17,CUST1030,Andrew Turner,40,Male,Gold,Electronics,Graphics Card,NVIDIA,1,650,5,32.5,617.5,450,167.5,PayPal,Germany,Hamburg,Website,Delivered,No,5,DHL,CAMP001
+ORD035,2024-02-18,CUST1031,Samantha Phillips,32,Female,Silver,Home & Garden,Air Purifier,Dyson,1,220,10,22,198,140,58,Credit Card,USA,Philadelphia,Online,Delivered,No,4,FedEx,
+ORD036,2024-02-19,CUST1032,Nathan Campbell,36,Male,Bronze,Clothing,Belt,Gucci,2,30,15,9,51,15,36,Debit Card,UK,Edinburgh,Mobile App,Delivered,No,6,Royal Mail,
+ORD037,2024-02-20,CUST1033,Victoria Parker,28,Female,Platinum,Beauty,Cologne,Hugo Boss,1,95,5,4.75,90.25,55,35.25,Credit Card,France,Marseille,Website,Delivered,No,5,La Poste,
+ORD038,2024-02-21,CUST1001,John Smith,35,Male,Gold,Electronics,External SSD,Samsung,1,140,10,14,126,90,36,PayPal,USA,New York,Online,Delivered,No,2,Amazon,CAMP002
+ORD039,2024-02-22,CUST1034,Dylan Evans,34,Male,Silver,Books,Travel Guide,Lonely Planet,1,25,5,1.25,23.75,12,11.75,Debit Card,Canada,Ottawa,Mobile App,Delivered,No,5,Canada Post,
+ORD040,2024-02-23,CUST1035,Chloe Edwards,30,Female,Gold,Clothing,Jacket,North Face,1,180,10,18,162,110,52,Credit Card,USA,Portland,Website,Delivered,No,3,UPS,CAMP001
+ORD041,2024-02-24,CUST1003,Mike Brown,42,Male,Platinum,Electronics,Smartwatch,Garmin,1,420,5,21,399,300,99,Credit Card,UK,London,Online,Delivered,No,3,DHL,
+ORD042,2024-02-25,CUST1036,Jacob Collins,38,Male,Bronze,Home & Garden,Microwave,Panasonic,1,180,15,27,153,110,43,PayPal,Australia,Perth,Mobile App,Delivered,No,6,Australia Post,
+ORD043,2024-02-26,CUST1037,Grace Stewart,27,Female,Silver,Beauty,Face Mask,Neutrogena,3,18,20,10.8,43.2,9,34.2,Debit Card,Germany,Frankfurt,Website,Delivered,Yes,7,DHL,CAMP002
+ORD044,2024-02-27,CUST1038,Ethan Sanchez,33,Male,Gold,Electronics,Laptop Stand,Rain Design,1,80,10,8,72,45,27,Credit Card,USA,Austin,Online,Delivered,No,4,USPS,
+ORD045,2024-02-28,CUST1039,Lily Morris,26,Female,Bronze,Books,Self-Help Book,Hay House,1,28,0,0,28,15,13,PayPal,UK,Bristol,Mobile App,Delivered,No,5,Royal Mail,
+ORD046,2024-03-01,CUST1040,Mason Rogers,41,Male,Platinum,Clothing,Suit,Armani,1,450,5,22.5,427.5,280,147.5,Credit Card,USA,Washington DC,Website,Delivered,No,3,FedEx,CAMP001
+ORD047,2024-03-02,CUST1041,Aria Reed,29,Female,Silver,Home & Garden,Toaster,Breville,1,65,10,6.5,58.5,40,18.5,Debit Card,Canada,Edmonton,Online,Delivered,No,4,Canada Post,
+ORD048,2024-03-03,CUST1042,Logan Cook,35,Male,Gold,Electronics,USB Hub,Anker,2,30,15,9,51,18,33,PayPal,Germany,Cologne,Mobile App,Delivered,No,5,DHL,
+ORD049,2024-03-04,CUST1043,Ella Morgan,31,Female,Bronze,Beauty,Sunscreen,Coppertone,2,22,10,4.4,39.6,12,27.6,Credit Card,Spain,Valencia,Website,Delivered,No,6,Correos,
+ORD050,2024-03-05,CUST1044,Carter Bell,37,Male,Silver,Books,Programming Book,O'Reilly,1,60,5,3,57,30,27,Debit Card,USA,San Diego,Online,Delivered,No,4,USPS,
+ORD051,2024-03-06,CUST1002,Sarah Johnson,28,Female,Silver,Electronics,Webcam,Logitech,1,120,10,12,108,75,33,PayPal,UK,London,Mobile App,Delivered,No,3,DHL,CAMP002
+ORD052,2024-03-07,CUST1045,Abigail Murphy,30,Female,Gold,Clothing,Scarf,Hermes,1,150,15,22.5,127.5,80,47.5,Credit Card,France,Nice,Website,Delivered,No,5,La Poste,
+ORD053,2024-03-08,CUST1046,Jack Rivera,39,Male,Bronze,Home & Garden,Lamp,IKEA,2,45,20,18,72,28,44,Debit Card,USA,Dallas,Online,Delivered,No,4,UPS,
+ORD054,2024-03-09,CUST1047,Avery Cooper,28,Female,Silver,Electronics,Earbuds,Apple,1,180,5,9,171,120,51,Credit Card,Australia,Adelaide,Mobile App,Delivered,No,6,Australia Post,CAMP001
+ORD055,2024-03-10,CUST1048,Lucas Richardson,36,Male,Platinum,Books,Business Book,Harvard,1,55,0,0,55,28,27,PayPal,Canada,Winnipeg,Website,Delivered,No,5,Canada Post,
+ORD056,2024-03-11,CUST1049,Mia Cox,32,Female,Gold,Beauty,Hair Dryer,Dyson,1,350,10,35,315,220,95,Credit Card,UK,Glasgow,Online,Delivered,No,4,Royal Mail,CAMP002
+ORD057,2024-03-12,CUST1050,Henry Howard,42,Male,Bronze,Clothing,Gloves,Columbia,2,28,10,5.6,50.4,16,34.4,Debit Card,Germany,Stuttgart,Mobile App,Delivered,No,6,DHL,
+ORD058,2024-03-13,CUST1003,Mike Brown,42,Male,Platinum,Electronics,Microphone,Blue Yeti,1,130,15,19.5,110.5,80,30.5,Credit Card,UK,London,Website,Delivered,No,3,DHL,CAMP001
+ORD059,2024-03-14,CUST1051,Harper Ward,27,Female,Silver,Home & Garden,Plant Pot,West Elm,3,25,5,3.75,71.25,15,56.25,PayPal,USA,Minneapolis,Online,Delivered,No,4,USPS,
+ORD060,2024-03-15,CUST1052,Sebastian Torres,34,Male,Gold,Electronics,Router,TP-Link,1,95,10,9.5,85.5,60,25.5,Credit Card,Spain,Seville,Mobile App,Delivered,No,7,Correos,
+ORD061,2024-03-16,CUST1053,Evelyn Peterson,29,Female,Bronze,Books,Romance Novel,Harlequin,2,18,15,5.4,30.6,10,20.6,Debit Card,Canada,Quebec City,Website,Delivered,Yes,5,Canada Post,CAMP002
+ORD062,2024-03-17,CUST1054,Jackson Gray,40,Male,Platinum,Clothing,Tie,Brooks Brothers,3,35,10,10.5,94.5,20,74.5,Credit Card,USA,Charlotte,Online,Delivered,No,3,FedEx,
+ORD063,2024-03-18,CUST1055,Scarlett Ramirez,26,Female,Silver,Beauty,Nail Polish,OPI,4,15,20,12,48,6,42,PayPal,UK,Leeds,Mobile App,Delivered,No,5,Royal Mail,
+ORD064,2024-03-19,CUST1056,Aiden James,38,Male,Gold,Electronics,Hard Drive,Seagate,1,110,5,5.5,104.5,70,34.5,Credit Card,Germany,Dusseldorf,Website,Delivered,No,4,DHL,CAMP001
+ORD065,2024-03-20,CUST1057,Madison Watson,31,Female,Bronze,Home & Garden,Curtains,Pottery Barn,2,60,15,18,102,38,64,Debit Card,USA,Columbus,Online,Delivered,No,4,UPS,
+ORD066,2024-03-21,CUST1001,John Smith,35,Male,Gold,Electronics,Mouse Pad,SteelSeries,1,35,10,3.5,31.5,18,13.5,PayPal,USA,New York,Mobile App,Delivered,No,2,Amazon,
+ORD067,2024-03-22,CUST1058,Elijah Brooks,33,Male,Silver,Books,Mystery Novel,Agatha Christie,1,22,0,0,22,11,11,Credit Card,Canada,Victoria,Website,Delivered,No,5,Canada Post,
+ORD068,2024-03-23,CUST1059,Charlotte Kelly,28,Female,Platinum,Clothing,Handbag,Coach,1,280,10,28,252,170,82,Debit Card,France,Toulouse,Online,Delivered,No,6,La Poste,CAMP002
+ORD069,2024-03-24,CUST1060,Benjamin Sanders,37,Male,Gold,Electronics,Gaming Mouse,Razer,1,70,15,10.5,59.5,42,17.5,PayPal,UK,Newcastle,Mobile App,Delivered,No,4,DHL,
+ORD070,2024-03-25,CUST1061,Amelia Price,30,Female,Bronze,Beauty,Eye Shadow,Urban Decay,2,42,10,8.4,75.6,24,51.6,Credit Card,USA,Las Vegas,Website,Delivered,No,3,USPS,CAMP001
+ORD071,2024-03-26,CUST1062,Michael Bennett,41,Male,Silver,Home & Garden,Storage Box,Rubbermaid,3,22,5,3.3,62.7,12,50.7,Debit Card,Australia,Canberra,Online,Delivered,No,7,Australia Post,
+ORD072,2024-03-27,CUST1063,Sofia Wood,27,Female,Gold,Clothing,Leggings,Lululemon,2,85,20,34,136,50,86,PayPal,Canada,Halifax,Mobile App,Delivered,Yes,5,Canada Post,CAMP002
+ORD073,2024-03-28,CUST1064,Alexander Barnes,36,Male,Bronze,Electronics,Screen Protector,Spigen,3,15,10,4.5,40.5,8,32.5,Credit Card,Germany,Dresden,Website,Delivered,No,6,DHL,
+ORD074,2024-03-29,CUST1065,Isabella Ross,32,Female,Platinum,Books,Art Book,Taschen,1,75,5,3.75,71.25,38,33.25,Debit Card,USA,Indianapolis,Online,Delivered,No,4,FedEx,
+ORD075,2024-03-30,CUST1066,Daniel Henderson,39,Male,Silver,Home & Garden,Alarm Clock,Philips,2,30,15,9,51,18,33,PayPal,UK,Southampton,Mobile App,Delivered,No,5,Royal Mail,
+ORD076,2024-03-31,CUST1003,Mike Brown,42,Male,Platinum,Electronics,Laptop Sleeve,Incase,1,50,10,5,45,28,17,Credit Card,UK,London,Website,Delivered,No,3,DHL,CAMP001
+ORD077,2024-04-01,CUST1067,Penelope Coleman,29,Female,Gold,Beauty,Body Lotion,Aveeno,2,20,20,8,32,10,22,Debit Card,Spain,Bilbao,Online,Delivered,No,7,Correos,
+ORD078,2024-04-02,CUST1068,Matthew Jenkins,35,Male,Bronze,Clothing,Socks,Under Armour,4,12,10,4.8,43.2,6,37.2,PayPal,USA,Milwaukee,Mobile App,Delivered,No,4,USPS,
+ORD079,2024-04-03,CUST1069,Aria Perry,26,Female,Silver,Electronics,Phone Case,OtterBox,2,40,15,12,68,24,44,Credit Card,Germany,Leipzig,Website,Delivered,No,5,DHL,CAMP002
+ORD080,2024-04-04,CUST1070,James Powell,38,Male,Gold,Home & Garden,Dish Set,Corelle,1,95,10,9.5,85.5,55,30.5,Debit Card,Canada,London ON,Online,Delivered,No,5,Canada Post,
+ORD081,2024-04-05,CUST1071,Layla Long,31,Female,Bronze,Books,Children Book,Disney,3,18,5,2.7,51.3,10,41.3,PayPal,UK,Plymouth,Mobile App,Delivered,No,6,Royal Mail,
+ORD082,2024-04-06,CUST1072,David Patterson,40,Male,Platinum,Electronics,Projector,Epson,1,520,10,52,468,350,118,Credit Card,USA,Nashville,Website,Delivered,No,3,FedEx,CAMP001
+ORD083,2024-04-07,CUST1073,Luna Hughes,28,Female,Silver,Clothing,Swimsuit,Speedo,1,65,15,9.75,55.25,35,20.25,Debit Card,Australia,Hobart,Online,Delivered,No,8,Australia Post,
+ORD084,2024-04-08,CUST1074,Samuel Flores,34,Male,Gold,Beauty,Razor,Gillette,2,30,10,6,54,18,36,PayPal,Germany,Bremen,Mobile App,Delivered,No,4,DHL,
+ORD085,2024-04-09,CUST1075,Nora Washington,27,Female,Bronze,Home & Garden,Picture Frame,Michael's,2,22,5,2.2,41.8,12,29.8,Credit Card,USA,Baltimore,Website,Delivered,No,4,UPS,
+ORD086,2024-04-10,CUST1076,Joseph Butler,42,Male,Silver,Electronics,Stylus,Apple,1,130,5,6.5,123.5,85,38.5,Debit Card,France,Strasbourg,Online,Delivered,No,6,La Poste,CAMP002
+ORD087,2024-04-11,CUST1001,John Smith,35,Male,Gold,Books,Tech Magazine,Wired,2,15,0,0,30,8,22,PayPal,USA,New York,Mobile App,Delivered,No,2,Amazon,
+ORD088,2024-04-12,CUST1077,Harper Simmons,30,Female,Platinum,Clothing,Cardigan,J.Crew,1,110,10,11,99,65,34,Credit Card,Canada,Regina,Website,Delivered,No,5,Canada Post,
+ORD089,2024-04-13,CUST1078,Jack Foster,36,Male,Gold,Electronics,Charging Cable,Anker,5,12,20,12,48,6,42,Debit Card,UK,Oxford,Online,Delivered,No,4,Royal Mail,CAMP001
+ORD090,2024-04-14,CUST1079,Zoe Gonzales,29,Female,Bronze,Beauty,Face Wash,Cetaphil,2,18,15,5.4,30.6,10,20.6,PayPal,Spain,Granada,Mobile App,Delivered,No,7,Correos,
+ORD091,2024-04-15,CUST1080,Owen Bryant,33,Male,Silver,Home & Garden,Tool Set,Craftsman,1,145,10,14.5,130.5,90,40.5,Credit Card,USA,Detroit,Website,Delivered,No,4,USPS,
+ORD092,2024-04-16,CUST1081,Riley Alexander,28,Female,Gold,Electronics,Fitness Tracker,Fitbit,1,150,5,7.5,142.5,100,42.5,Debit Card,Germany,Hanover,Online,Delivered,No,5,DHL,CAMP002
+ORD093,2024-04-17,CUST1082,Wyatt Russell,37,Male,Bronze,Books,Comic Book,Marvel,3,25,10,7.5,67.5,15,52.5,PayPal,Canada,Saskatoon,Mobile App,Delivered,No,6,Canada Post,
+ORD094,2024-04-18,CUST1083,Lillian Griffin,32,Female,Platinum,Clothing,Boots,Timberland,1,190,15,28.5,161.5,110,51.5,Credit Card,USA,Memphis,Website,Delivered,No,3,FedEx,
+ORD095,2024-04-19,CUST1084,Luke Diaz,35,Male,Silver,Electronics,VR Headset,Meta,1,400,10,40,360,280,80,Debit Card,UK,Cambridge,Online,Delivered,No,4,DHL,CAMP001
+ORD096,2024-04-20,CUST1085,Stella Hayes,26,Female,Gold,Beauty,Makeup Kit,Maybelline,1,85,20,17,68,42,26,PayPal,Australia,Gold Coast,Mobile App,Delivered,Yes,6,Australia Post,CAMP002
+ORD097,2024-04-21,CUST1086,Caleb Myers,39,Male,Bronze,Home & Garden,Wall Clock,Seiko,1,75,5,3.75,71.25,45,26.25,Credit Card,USA,Denver,Website,Delivered,No,4,UPS,
+ORD098,2024-04-22,CUST1087,Paisley Ford,31,Female,Silver,Electronics,USB Flash Drive,SanDisk,3,20,10,6,54,12,42,Debit Card,Germany,Nuremberg,Online,Delivered,No,5,DHL,
+ORD099,2024-04-23,CUST1002,Sarah Johnson,28,Female,Silver,Books,Graphic Novel,DC Comics,2,28,0,0,56,16,40,PayPal,UK,London,Mobile App,Delivered,No,3,DHL,
+ORD100,2024-04-24,CUST1088,Hunter Hamilton,34,Male,Platinum,Clothing,Running Shoes,Asics,1,125,10,12.5,112.5,75,37.5,Credit Card,France,Bordeaux,Website,Delivered,No,5,La Poste,CAMP001

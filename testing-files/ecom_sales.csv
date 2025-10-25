@@ -1,0 +1,51 @@
+order_id,order_date,customer_id,customer_name,product_category,product_name,quantity,unit_price,total_amount,payment_method,shipping_country,shipping_city,order_status
+ORD001,2024-01-15,CUST1001,John Smith,Electronics,Laptop,1,1200.00,1200.00,Credit Card,USA,New York,Delivered
+ORD002,2024-01-16,CUST1002,Sarah Johnson,Clothing,T-Shirt,3,25.00,75.00,PayPal,USA,Los Angeles,Delivered
+ORD003,2024-01-16,CUST1003,Mike Brown,Electronics,Smartphone,1,800.00,800.00,Credit Card,UK,London,Delivered
+ORD004,2024-01-17,CUST1001,John Smith,Books,Python Programming,2,45.00,90.00,Credit Card,USA,New York,Delivered
+ORD005,2024-01-18,CUST1004,Emma Davis,Home & Garden,Coffee Maker,1,150.00,150.00,Debit Card,Canada,Toronto,Shipped
+ORD006,2024-01-19,CUST1005,James Wilson,Electronics,Headphones,2,120.00,240.00,PayPal,USA,Chicago,Delivered
+ORD007,2024-01-20,CUST1002,Sarah Johnson,Clothing,Jeans,2,60.00,120.00,Credit Card,USA,Los Angeles,Delivered
+ORD008,2024-01-21,CUST1006,Lisa Anderson,Beauty,Skincare Set,1,85.00,85.00,Credit Card,UK,Manchester,Delivered
+ORD009,2024-01-22,CUST1007,Robert Taylor,Electronics,Tablet,1,450.00,450.00,PayPal,Australia,Sydney,Shipped
+ORD010,2024-01-23,CUST1003,Mike Brown,Books,Data Science Guide,1,55.00,55.00,Debit Card,UK,London,Delivered
+ORD011,2024-01-24,CUST1008,Maria Garcia,Clothing,Dress,1,95.00,95.00,Credit Card,Spain,Madrid,Delivered
+ORD012,2024-01-25,CUST1009,David Martinez,Electronics,Smart Watch,1,350.00,350.00,PayPal,USA,Miami,Processing
+ORD013,2024-01-26,CUST1010,Jennifer Lee,Home & Garden,Vacuum Cleaner,1,280.00,280.00,Credit Card,USA,Seattle,Delivered
+ORD014,2024-01-27,CUST1001,John Smith,Electronics,Wireless Mouse,2,35.00,70.00,Credit Card,USA,New York,Delivered
+ORD015,2024-01-28,CUST1011,Christopher White,Books,Machine Learning,1,65.00,65.00,PayPal,Canada,Vancouver,Delivered
+ORD016,2024-01-29,CUST1005,James Wilson,Electronics,Keyboard,1,85.00,85.00,Debit Card,USA,Chicago,Delivered
+ORD017,2024-01-30,CUST1012,Amanda Harris,Beauty,Perfume,1,120.00,120.00,Credit Card,France,Paris,Shipped
+ORD018,2024-02-01,CUST1013,Daniel Clark,Clothing,Jacket,1,180.00,180.00,PayPal,Germany,Berlin,Delivered
+ORD019,2024-02-02,CUST1014,Jessica Lewis,Electronics,Camera,1,950.00,950.00,Credit Card,USA,Boston,Processing
+ORD020,2024-02-03,CUST1002,Sarah Johnson,Home & Garden,Blender,1,95.00,95.00,PayPal,USA,Los Angeles,Delivered
+ORD021,2024-02-04,CUST1015,Matthew Robinson,Electronics,Gaming Console,1,500.00,500.00,Credit Card,UK,Birmingham,Delivered
+ORD022,2024-02-05,CUST1016,Ashley Walker,Clothing,Sneakers,1,130.00,130.00,Debit Card,USA,Denver,Delivered
+ORD023,2024-02-06,CUST1003,Mike Brown,Electronics,Laptop,1,1350.00,1350.00,Credit Card,UK,London,Shipped
+ORD024,2024-02-07,CUST1017,Emily Hall,Books,Web Development,2,40.00,80.00,PayPal,Canada,Montreal,Delivered
+ORD025,2024-02-08,CUST1018,Joshua Allen,Beauty,Cologne,1,95.00,95.00,Credit Card,USA,Phoenix,Delivered
+ORD026,2024-02-09,CUST1019,Nicole Young,Home & Garden,Air Purifier,1,220.00,220.00,PayPal,USA,Portland,Processing
+ORD027,2024-02-10,CUST1020,Ryan King,Electronics,Drone,1,780.00,780.00,Credit Card,Australia,Melbourne,Shipped
+ORD028,2024-02-11,CUST1004,Emma Davis,Clothing,Sweater,2,55.00,110.00,Debit Card,Canada,Toronto,Delivered
+ORD029,2024-02-12,CUST1021,Brandon Wright,Electronics,Smartwatch,1,420.00,420.00,PayPal,USA,Atlanta,Delivered
+ORD030,2024-02-13,CUST1022,Stephanie Lopez,Books,AI Fundamentals,1,75.00,75.00,Credit Card,UK,Leeds,Delivered
+ORD031,2024-02-14,CUST1023,Justin Hill,Electronics,Bluetooth Speaker,2,65.00,130.00,PayPal,USA,Las Vegas,Delivered
+ORD032,2024-02-15,CUST1024,Rachel Scott,Clothing,Coat,1,210.00,210.00,Credit Card,France,Lyon,Shipped
+ORD033,2024-02-16,CUST1025,Kevin Green,Electronics,Printer,1,320.00,320.00,Debit Card,Germany,Munich,Processing
+ORD034,2024-02-17,CUST1006,Lisa Anderson,Beauty,Makeup Kit,1,145.00,145.00,PayPal,UK,Manchester,Delivered
+ORD035,2024-02-18,CUST1026,Tyler Adams,Home & Garden,Microwave,1,175.00,175.00,Credit Card,USA,Dallas,Delivered
+ORD036,2024-02-19,CUST1027,Lauren Baker,Electronics,Monitor,1,380.00,380.00,PayPal,Canada,Calgary,Delivered
+ORD037,2024-02-20,CUST1028,Jordan Nelson,Clothing,Shoes,1,95.00,95.00,Debit Card,USA,Houston,Delivered
+ORD038,2024-02-21,CUST1001,John Smith,Electronics,External SSD,1,140.00,140.00,Credit Card,USA,New York,Delivered
+ORD039,2024-02-22,CUST1029,Megan Carter,Books,Cloud Computing,1,60.00,60.00,PayPal,UK,Liverpool,Shipped
+ORD040,2024-02-23,CUST1030,Austin Mitchell,Electronics,Webcam,1,85.00,85.00,Credit Card,USA,San Diego,Delivered
+ORD041,2024-02-24,CUST1031,Hannah Perez,Beauty,Hair Dryer,1,65.00,65.00,PayPal,Spain,Barcelona,Delivered
+ORD042,2024-02-25,CUST1032,Zachary Roberts,Home & Garden,Toaster,1,45.00,45.00,Debit Card,USA,Austin,Processing
+ORD043,2024-02-26,CUST1033,Samantha Turner,Electronics,Power Bank,2,30.00,60.00,Credit Card,Australia,Brisbane,Delivered
+ORD044,2024-02-27,CUST1034,Andrew Phillips,Clothing,Shorts,3,35.00,105.00,PayPal,USA,San Francisco,Delivered
+ORD045,2024-02-28,CUST1002,Sarah Johnson,Electronics,USB Hub,1,25.00,25.00,Credit Card,USA,Los Angeles,Delivered
+ORD046,2024-02-29,CUST1035,Brittany Campbell,Books,DevOps Handbook,1,70.00,70.00,PayPal,Canada,Ottawa,Shipped
+ORD047,2024-03-01,CUST1036,Nicholas Parker,Electronics,Graphics Card,1,650.00,650.00,Credit Card,USA,Philadelphia,Processing
+ORD048,2024-03-02,CUST1037,Victoria Evans,Home & Garden,Food Processor,1,195.00,195.00,Debit Card,UK,Glasgow,Delivered
+ORD049,2024-03-03,CUST1038,Alexander Edwards,Electronics,Router,1,110.00,110.00,PayPal,Germany,Hamburg,Delivered
+ORD050,2024-03-04,CUST1003,Mike Brown,Clothing,Belt,2,30.00,60.00,Credit Card,UK,London,Delivered
