@@ -17,10 +17,10 @@ class ChatModel:
     Universal wrapper for LiteLLM + raw HTTP fallback.
     """
 
-    def __init__(self, api_url: str = None, model: str = None):
+    def __init__(self, api_url: str = None, model: str = None, api_key: str = None):
         self.api_url = api_url or MODEL_API_URL
         self.model = model or f"{MODEL_PROVIDER}/{MODEL_NAME}"  # ✅ e.g. "ollama/Llama-4-Scout-17B-16E-Instruct"
-        self.api_key = API_KEY
+        self.api_key = api_key or API_KEY
 
     # ------------------------------------------------------------------
     # Primary LiteLLM call
@@ -77,8 +77,11 @@ class ChatModel:
             # Raw HTTP Fallback
             # ----------------------------
             try:
+                # Extract model name without provider prefix for direct API calls
+                model_name = self.model.split('/')[-1] if '/' in self.model else self.model
+
                 payload = {
-                    "model": MODEL_NAME,  # no prefix for direct API
+                    "model": model_name,
                     "messages": messages,
                     "temperature": temperature,
                     "stream": False,
@@ -87,11 +90,15 @@ class ChatModel:
                 print("\n[ChatModel] Fallback payload:")
                 print(json.dumps(payload, indent=2, ensure_ascii=False))
 
+                headers = {"Content-Type": "application/json"}
+                if self.api_key and self.api_key != "llm":
+                    headers["Authorization"] = f"Bearer {self.api_key}"
+
                 resp = requests.post(
                     f"{self.api_url}/chat/completions",
-                    headers={"Content-Type": "application/json"},
+                    headers=headers,
                     data=json.dumps(payload),
-                    timeout=90,
+                    timeout=300,  # Increased from 90 to 300 seconds for large prompts
                 )
 
                 if resp.status_code == 200:

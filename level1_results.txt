@@ -1,0 +1,98 @@
+================================================================================
+LEVEL 1: DESCRIPTIVE ANALYTICS
+================================================================================
+Database: Oracle TAQDB
+Model: Llama-4-Scout via OpenRouter
+Focus: 'What happened?' - totals, counts, averages
+================================================================================
+
+
+================================================================================
+SECTION 1: OVERALL SALES METRICS
+================================================================================
+
+================================================================================
+QUERY: Q1.1 - Overall Totals
+================================================================================
+Question: What is the total sales amount, total number of orders, and total quantity sold?
+
+[OK] Status: 200 | Time: 4.62s
+
+[SQL]:
+  SELECT 
+    SUM("TOTAL_AMOUNT") AS total_sales_amount,
+    COUNT("ORDER_ID") AS total_number_of_orders,
+    SUM("QUANTITY") AS total_quantity_sold
+  FROM "ECOM_SALES_71F1F755"
+
+[RESULTS]: 1 rows
+   1. {'TOTAL_SALES_AMOUNT': 12440, 'TOTAL_NUMBER_OF_ORDERS': 50, 'TOTAL_QUANTITY_SOLD': 63}
+
+================================================================================
+QUERY: Q1.2 - Totals by Region
+================================================================================
+Question: What is the total sales, total orders, and total quantity sold by shipping country?
+
+[OK] Status: 200 | Time: 5.03s
+
+[SQL]:
+  SELECT 
+    E1."SHIPPING_COUNTRY",
+    SUM(E1."TOTAL_AMOUNT") AS TOTAL_SALES,
+    COUNT(E1."ORDER_ID") AS TOTAL_ORDERS,
+    SUM(E1."QUANTITY") AS TOTAL_QUANTITY
+  FROM 
+    "ECOM_SALES_71F1F755" E1
+  GROUP BY 
+    E1."SHIPPING_COUNTRY"
+  ORDER BY 
+    E1."SHIPPING_COUNTRY"
+
+[RESULTS]: 7 rows
+   1. {'SHIPPING_COUNTRY': 'Australia', 'TOTAL_SALES': 1290, 'TOTAL_ORDERS': 3, 'TOTAL_QUANTITY': 4}
+   2. {'SHIPPING_COUNTRY': 'Canada', 'TOTAL_SALES': 855, 'TOTAL_ORDERS': 6, 'TOTAL_QUANTITY': 8}
+   3. {'SHIPPING_COUNTRY': 'France', 'TOTAL_SALES': 330, 'TOTAL_ORDERS': 2, 'TOTAL_QUANTITY': 2}
+   4. {'SHIPPING_COUNTRY': 'Germany', 'TOTAL_SALES': 610, 'TOTAL_ORDERS': 3, 'TOTAL_QUANTITY': 3}
+   5. {'SHIPPING_COUNTRY': 'Spain', 'TOTAL_SALES': 160, 'TOTAL_ORDERS': 2, 'TOTAL_QUANTITY': 2}
+   6. {'SHIPPING_COUNTRY': 'UK', 'TOTAL_SALES': 3325, 'TOTAL_ORDERS': 10, 'TOTAL_QUANTITY': 11}
+   7. {'SHIPPING_COUNTRY': 'USA', 'TOTAL_SALES': 5870, 'TOTAL_ORDERS': 24, 'TOTAL_QUANTITY': 33}
+
+
+================================================================================
+SECTION 2: PRODUCT & CATEGORY PERFORMANCE
+================================================================================
+
+================================================================================
+QUERY: Q2.1 - Revenue by Category
+================================================================================
+Question: Which product categories generated the highest revenue?
+
+[FAIL] Status: 500 | Time: 4.73s
+Traceback (most recent call last):
+  File "D:\h2sql\test_level1_descriptive_analytics.py", line 49, in query
+    print(f"\n[ERROR]: {response.json().get('detail', response.text)[:200]}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sjalagam\AppData\Local\Programs\Python\Python313\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 47-49: character maps to <undefined>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\h2sql\test_level1_descriptive_analytics.py", line 95, in <module>
+    success, time3, data3 = query(
+                            ~~~~~^
+        "Which product categories generated the highest revenue?",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        "Q2.1 - Revenue by Category"
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\h2sql\test_level1_descriptive_analytics.py", line 51, in query
+    print(f"\n[ERROR]: {response.text[:200]}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sjalagam\AppData\Local\Programs\Python\Python313\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 58-60: character maps to <undefined>

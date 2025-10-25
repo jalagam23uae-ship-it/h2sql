@@ -1688,7 +1688,8 @@ async def generate_sql_from_question(question: str, db_metadata: list, dialect: 
         llm_config = get_llm_config("sql_generation")
         chat_model = ChatModel(
             api_url=llm_config.base_url,
-            model=f"{llm_config.provider}/{llm_config.model}"
+            model=f"{llm_config.provider}/{llm_config.model}",
+            api_key=llm_config.api_key
         )
         prompts = Prompts()
 
@@ -1713,6 +1714,24 @@ async def generate_sql_from_question(question: str, db_metadata: list, dialect: 
         # Step 5: Clean and validate SQL
         sql_query = str(sql_query).strip()
         sql_query = re.sub(r"^```(sql)?|```$", "", sql_query).strip()
+
+        # Fix duplicate SELECT statements and incomplete UNION (LLM sometimes returns multiple queries)
+        # Example: "SELECT ... SELECT ..." -> "SELECT ..."
+        # Example: "SELECT ... UNION" -> "SELECT ..."
+
+        # Remove trailing incomplete UNION/UNION ALL
+        sql_query = re.sub(r'\s+(UNION\s*ALL?)\s*$', '', sql_query, flags=re.IGNORECASE).strip()
+
+        select_matches = list(re.finditer(r'(?i)\bSELECT\b', sql_query))
+        if len(select_matches) > 1:
+            # Multiple SELECT statements found - take only the first complete one
+            first_select_pos = select_matches[0].start()
+            second_select_pos = select_matches[1].start()
+            # Extract only the first SELECT statement
+            sql_query = sql_query[first_select_pos:second_select_pos].strip()
+            # Remove trailing UNION again after extraction
+            sql_query = re.sub(r'\s+(UNION\s*ALL?)\s*$', '', sql_query, flags=re.IGNORECASE).strip()
+            logger.warning(f"[SQL_GEN] Removed duplicate SELECT statements. Using first query only.")
 
         if not re.match(r"(?i)^(select|insert|update|delete|create|with)\b", sql_query):
             logger.warning(f"[SQL_GEN] LLM output not a valid SQL statement: {sql_query}")
@@ -2674,9 +2693,18 @@ async def execute_query(
         # Clean SQL
         sql_query = llm_generated_sql.replace('\n', ' ').replace(';', '').strip()
 
-        # Execute query
-        cursor.execute(sql_query)
-        rows = cursor.fetchall()
+        # Execute query with Unicode-safe error handling
+        try:
+            cursor.execute(sql_query)
+            rows = cursor.fetchall()
+        except Exception as e:
+            # Convert error message to ASCII-safe string (Oracle errors contain Arabic characters)
+            error_msg = str(e).encode('ascii', 'ignore').decode('ascii')
+            logger.error(f"Error in execute_query: {error_msg}")
+            raise HTTPException(
+                status_code=500,
+                detail=f"Failed to execute query: {error_msg}"
+            )
         columns = [desc[0] for desc in cursor.description] if cursor.description else []
 
         # Convert to list of dicts

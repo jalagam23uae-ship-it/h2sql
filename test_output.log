@@ -1,0 +1,186 @@
+================================================================================
+DETAILED H2SQL ENDPOINT TESTS WITH E-COMMERCE DATA
+================================================================================
+
+
+STEP 1: UPLOAD E-COMMERCE SALES DATA
+================================================================================
+
+================================================================================
+REQUEST: POST http://localhost:11901/h2s/data-upload/upload
+================================================================================
+Files: {'file': 'ecom_sales.csv'}
+
+--------------------------------------------------------------------------------
+RESPONSE:
+--------------------------------------------------------------------------------
+Status Code: 200
+Headers: {'date': 'Sat, 25 Oct 2025 13:07:38 GMT', 'server': 'uvicorn', 'content-length': '137', 'content-type': 'application/json'}
+
+Full JSON Response:
+{
+  "success": true,
+  "message": "\u2705 Uploaded and processed ecom_sales.csv",
+  "projectId": 22,
+  "tableName": "ECOM_SALES_C641D57F",
+  "rowsInserted": 50
+}
+
+
+STEP 2: COMPLEX QUERY - Total Sales by Product Category
+================================================================================
+
+================================================================================
+REQUEST: POST http://localhost:11901/h2s/data-upload/executequey
+================================================================================
+Payload:
+{
+  "project_id": 22,
+  "question": "what is the total sales amount for each product category?"
+}
+
+Execution Time: 4.49s
+
+--------------------------------------------------------------------------------
+RESPONSE:
+--------------------------------------------------------------------------------
+Status Code: 500
+Headers: {'date': 'Sat, 25 Oct 2025 13:07:40 GMT', 'server': 'uvicorn', 'content-length': '198', 'content-type': 'application/json'}
+
+Full JSON Response:
+{
+  "detail": "Failed to generate SQL from question: LLM returned invalid response: Error during inference: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))"
+}
+
+
+STEP 3: COMPARISON QUERY - Top 5 Customers by Total Spend
+================================================================================
+
+================================================================================
+REQUEST: POST http://localhost:11901/h2s/data-upload/executequey
+================================================================================
+Payload:
+{
+  "project_id": 22,
+  "question": "who are the top 5 customers by total amount spent?"
+}
+
+Execution Time: 4.33s
+
+--------------------------------------------------------------------------------
+RESPONSE:
+--------------------------------------------------------------------------------
+Status Code: 500
+Headers: {'date': 'Sat, 25 Oct 2025 13:07:45 GMT', 'server': 'uvicorn', 'content-length': '198', 'content-type': 'application/json'}
+
+Full JSON Response:
+{
+  "detail": "Failed to generate SQL from question: LLM returned invalid response: Error during inference: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))"
+}
+
+
+STEP 4: GROUP BY QUERY - Order Count by Country
+================================================================================
+
+================================================================================
+REQUEST: POST http://localhost:11901/h2s/data-upload/executequey
+================================================================================
+Payload:
+{
+  "project_id": 22,
+  "question": "how many orders were placed from each country?"
+}
+
+Execution Time: 4.49s
+
+--------------------------------------------------------------------------------
+RESPONSE:
+--------------------------------------------------------------------------------
+Status Code: 500
+Headers: {'date': 'Sat, 25 Oct 2025 13:07:49 GMT', 'server': 'uvicorn', 'content-length': '198', 'content-type': 'application/json'}
+
+Full JSON Response:
+{
+  "detail": "Failed to generate SQL from question: LLM returned invalid response: Error during inference: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))"
+}
+
+
+STEP 5: AGGREGATION QUERY - Average Order Value by Payment Method
+================================================================================
+
+================================================================================
+REQUEST: POST http://localhost:11901/h2s/data-upload/executequey
+================================================================================
+Payload:
+{
+  "project_id": 22,
+  "question": "what is the average order amount for each payment method?"
+}
+
+Execution Time: 4.37s
+
+--------------------------------------------------------------------------------
+RESPONSE:
+--------------------------------------------------------------------------------
+Status Code: 500
+Headers: {'date': 'Sat, 25 Oct 2025 13:07:54 GMT', 'server': 'uvicorn', 'content-length': '198', 'content-type': 'application/json'}
+
+Full JSON Response:
+{
+  "detail": "Failed to generate SQL from question: LLM returned invalid response: Error during inference: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))"
+}
+
+
+STEP 6: GENERATE REPORT - Sales by Category
+================================================================================
+
+================================================================================
+REQUEST: POST http://localhost:11901/h2s/data-upload/generatereport
+================================================================================
+Payload:
+{
+  "projectId": 22,
+  "question": "show me total sales by product category"
+}
+
+Execution Time: 4.58s
+
+--------------------------------------------------------------------------------
+RESPONSE:
+--------------------------------------------------------------------------------
+Status Code: 500
+Headers: {'date': 'Sat, 25 Oct 2025 13:07:58 GMT', 'server': 'uvicorn', 'content-length': '198', 'content-type': 'application/json'}
+
+JSON Response (truncated):
+{
+  "detail": "Failed to generate SQL from question: LLM returned invalid response: Error during inference: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))"
+}
+
+
+STEP 7: GRAPH GENERATION - Using response_id
+================================================================================
+
+================================================================================
+REQUEST: POST http://localhost:11901/h2s/data-upload/executequey
+================================================================================
+Payload:
+{
+  "project_id": 22,
+  "question": "show sales by product category"
+}
+
+--------------------------------------------------------------------------------
+RESPONSE:
+--------------------------------------------------------------------------------
+Status Code: 500
+Headers: {'date': 'Sat, 25 Oct 2025 13:08:01 GMT', 'server': 'uvicorn', 'content-length': '198', 'content-type': 'application/json'}
+
+JSON Response (truncated):
+{
+  "detail": "Failed to generate SQL from question: LLM returned invalid response: Error during inference: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))"
+}
+
+
+================================================================================
+ALL TESTS COMPLETE
+================================================================================

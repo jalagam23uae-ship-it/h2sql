@@ -16,17 +16,34 @@ class OracleConnector(DBConnector):
     def __init__(self):
         self.db_type = "oracle"
 
-    def _get_connection(self, username, password, con_string):
+    def _get_connection(self, username, password, con_string, database=None):
         d = None                             # On Linux, no directory should be passed
         if platform.system() == "Windows":   # Windows
             d = r"C:\oracle\instantclient_23_9"
             oracledb.init_oracle_client(lib_dir=d)
 
-        return oracledb.connect(user=username, password=password, dsn=con_string)
+        # Build DSN properly for Oracle
+        # If database (SID) is provided separately, construct DSN with it
+        if database:
+            # Format: host:port/sid or build TNS-style DSN
+            dsn = oracledb.makedsn(
+                host=con_string.split(':')[0],
+                port=int(con_string.split(':')[1]) if ':' in con_string else 1521,
+                sid=database
+            )
+        else:
+            # Use con_string as-is (assume it's already formatted correctly)
+            dsn = con_string
+
+        return oracledb.connect(user=username, password=password, dsn=dsn)
 
     def get_connection(self, con_profile: ConnectionProfile):
         self.connection = self._get_connection(
-            con_profile.username, con_profile.password, con_profile.con_string)
+            con_profile.username,
+            con_profile.password,
+            con_profile.con_string,
+            getattr(con_profile, 'database', None)
+        )
         return self.connection
 
     def get_tables(self) -> list[str]:
